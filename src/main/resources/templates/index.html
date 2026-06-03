@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+   <title>Transportation Analytics Dashboard</title>
+
+   <style>
+       body {
+           font-family: Arial;
+           margin: 30px;
+           background-color: #f7f7f7;
+       }
+
+       h1 {
+           color: #2c3e50;
+       }
+
+       h2 {
+           color: #444;
+       }
+
+       table {
+           border-collapse: collapse;
+           background-color: white;
+           width: 80%;
+           margin-bottom: 25px;
+       }
+
+       th, td {
+           border: 1px solid #999;
+           padding: 10px;
+           text-align: left;
+       }
+
+       th {
+           background-color: #e6e6e6;
+       }
+
+       .report-section {
+           width: 80%;
+           border: 1px solid #ccc;
+           padding: 15px;
+           box-sizing: border-box;
+           background-color: white;
+       }
+
+       p {
+           font-size: 16px;
+       }
+		
+   </style>
+
+   </head>
+
+<body>
+
+   <h1>Transportation Analytics Dashboard</h1>
+
+   <h2>Material Test Data</h2>
+
+   <table>
+
+       <tr>
+           <th>Sample ID</th>
+           <th>Density</th>
+           <th>Air Voids</th>
+       </tr>
+
+       <tr th:each="test : ${materialTests}">
+           <td th:text="${test.sampleId}"></td>
+           <td th:text="${test.density}"></td>
+           <td th:text="${test.airVoids}"></td>
+       </tr>
+
+   </table>
+
+   <div class="report-section">
+
+       <h2>Transportation Materials Analysis Report</h2>
+
+       <p>Samples Tested: <span th:text="${sampleCount}"></span></p>
+
+       <p>Average Density: <span th:text="${#numbers.formatDecimal(averageDensity, 1, 2)}"></span></p>
+       <p>Average Air Voids: <span th:text="${#numbers.formatDecimal(averageAirVoids, 1, 2)}"></span></p>
+
+       <p>Highest Density Sample: <span th:text="${highestDensitySample.sampleId}"></span> (Density = <span th:text="${highestDensitySample.density}"></span>)</p>
+       <p>Lowest Density Sample: <span th:text="${lowestDensitySample.sampleId}"></span> (Density = <span th:text="${lowestDensitySample.density}"></span>)</p>
+
+       <p>Highest Air Voids Sample: <span th:text="${highestAirVoidSample.sampleId}"></span> (Air Voids = <span th:text="${highestAirVoidSample.airVoids}"></span>)</p>
+       <p>Lowest Air Voids Sample: <span th:text="${lowestAirVoidSample.sampleId}"></span> (Air Voids = <span th:text="${lowestAirVoidSample.airVoids}"></span>)</p>
+
+    </div>
+
+</body>
+
+</html>
